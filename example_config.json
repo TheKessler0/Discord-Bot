@@ -1,0 +1,11 @@
+{
+	"token":           "",
+	"clientId":        "",
+	"guildId":         "",
+	"reportChannelId": "",
+	"verifyChannelId": "",
+	"jailChannelId":   "",
+	"reportRole":      "",
+	"verifyRole":      "",
+	"jailedRole":      ""
+}
