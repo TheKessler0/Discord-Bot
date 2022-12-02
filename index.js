@@ -1,28 +1,35 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token, guildId } = require('./config.json');
-const { reportChannelId, modRoleID } = require('./config.json');
-const { verifyChannelId, superModRoleId } = require('./config.json');
-const { jailChannelId, mutedRoleId } = require('./config.json');
+const { roleIds, channelIds, token, clientId, guildId } = require(`./config.json`);
 
 let abort = false
-if (token           ===  "" ) {abort = true; console.log(`"token" missing, add it to "config.json"          `)}
-if (guildId         ===  "" ) {abort = true; console.log(`"guildId" missing, add it to "config.json"        `)}
-if (reportChannelId ===  "" ) {abort = true; console.log(`"reportChannelId" missing, add it to "config.json"`)}
-if (modRoleID       ===  "" ) {abort = true; console.log(`"modRoleID" missing, add it to "config.json"      `)}
-if (verifyChannelId ===  "" ) {abort = true; console.log(`"verifyChannelId" missing, add it to "config.json"`)}
-if (superModRoleId  ===  "" ) {abort = true; console.log(`"superModRoleId" missing, add it to "config.json" `)}
-if (jailChannelId   ===  "" ) {abort = true; console.log(`"jailChannelId" missing, add it to "config.json"  `)}
-if (mutedRoleId     ===  "" ) {abort = true; console.log(`"mutedRoleId" missing, add it to "config.json"    `)}
-if (abort           === true) {process.exit(1)}
+if (token === "") { abort = true; console.log(`[WARN] "token" missing, add it to "config.json"`) }
+if (guildId === "") { abort = true; console.log(`[WARN] "guildId" missing, add it to "config.json"`) }
+if (clientId === "") { abort = true; console.log(`[WARN] "clientId" missing, add it to "config.json"`) }
+Object.entries(roleIds).forEach( trouple => {
+	if (trouple[1] === "") {
+		abort = true
+		console.log(`[WARN] "${trouple[0]}" missing, add it to "config.json"`)
+	}
+});
+Object.entries(channelIds).forEach( trouple => {
+	if (trouple[1] === "") {
+		abort = true
+		console.log(`[WARN] "${trouple[0]}" missing, add it to "config.json"`)
+	}
+});
+if (abort === true) {
+	console.log('\n[INFO] SHUTTING DOWN')
+	process.exit(1)
+}
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 
 client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js') && !file.startsWith('[WIP]'));
 
 for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);

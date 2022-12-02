@@ -14,10 +14,10 @@ FINISHED!
 {
 	"token":           "", //the bots application token
 	"guildId":         "", //ID of the server (aka guild in the code)
-	"reportChannelId": "", //ID of the channel reports-threads should go
-	"verifyChannelId": "", //ID of the channel verify-threads should go
-	"jailChannelId":   "", //ID of Jail, for jailed to verify
-	"modRoleID":       "", //ID of role that should see report-tickets
-	"superModRoleId":  "", //ID of role that should see verification-tickets
-	"mutedRoleId":     ""  //ID of jailed-role
+	"channelIds.report": "", //ID of the channel reports-threads should go
+	"channelIds.verify": "", //ID of the channel verify-threads should go
+	"channelIds.jail":   "", //ID of Jail, for jailed to verify
+	"roleIds.normMod":       "", //ID of role that should see report-tickets
+	"roleIds.seniorMod":  "", //ID of role that should see verification-tickets
+	"roleIds.muted":     ""  //ID of jailed-role
 }
