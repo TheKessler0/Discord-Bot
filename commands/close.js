@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const { reportRole, reportChannelId, verifyRole, verifyChannelId, jailChannelId } = require('../config.json');
+const { modRoleID, reportChannelId, superModRoleId, verifyChannelId, jailChannelId } = require('../config.json');
 const fs = require('fs');
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -12,7 +12,7 @@ module.exports = {
 		await interaction.member.fetch()
 
 		//IS STAFF?
-		if (interaction.member.roles.cache.some(role => role.id === reportRole || role.id === verifyRole)) {
+		if (interaction.member.roles.cache.some(role => role.id === modRoleID || role.id === superModRoleId)) {
 
 			//IS RIGHT THREAD?
 			if ((interaction.channel.parentId === reportChannelId || interaction.channel.parentId === verifyChannelId || interaction.channel.parentId === jailChannelId ) && interaction.channel.isThread()) {

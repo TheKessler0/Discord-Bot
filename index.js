@@ -2,19 +2,19 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token, guildId } = require('./config.json');
-const { reportChannelId, reportRole } = require('./config.json');
-const { verifyChannelId, verifyRole } = require('./config.json');
-const { jailChannelId, jailedRole } = require('./config.json');
+const { reportChannelId, modRoleID } = require('./config.json');
+const { verifyChannelId, superModRoleId } = require('./config.json');
+const { jailChannelId, mutedRoleId } = require('./config.json');
 
 let abort = false
-if (token           ===  "" ) {abort = true; console.log(`"token" missing, add it to "config.json"`)}
-if (guildId         ===  "" ) {abort = true; console.log(`"guildId" missing, add it to "config.json"`)}
+if (token           ===  "" ) {abort = true; console.log(`"token" missing, add it to "config.json"          `)}
+if (guildId         ===  "" ) {abort = true; console.log(`"guildId" missing, add it to "config.json"        `)}
 if (reportChannelId ===  "" ) {abort = true; console.log(`"reportChannelId" missing, add it to "config.json"`)}
-if (reportRole      ===  "" ) {abort = true; console.log(`"reportRole" missing, add it to "config.json"`)}
+if (modRoleID       ===  "" ) {abort = true; console.log(`"modRoleID" missing, add it to "config.json"      `)}
 if (verifyChannelId ===  "" ) {abort = true; console.log(`"verifyChannelId" missing, add it to "config.json"`)}
-if (verifyRole      ===  "" ) {abort = true; console.log(`"verifyRole" missing, add it to "config.json"`)}
-if (jailChannelId   ===  "" ) {abort = true; console.log(`"jailChannelId" missing, add it to "config.json"`)}
-if (jailedRole      ===  "" ) {abort = true; console.log(`"jailedRole" missing, add it to "config.json"`)}
+if (superModRoleId  ===  "" ) {abort = true; console.log(`"superModRoleId" missing, add it to "config.json" `)}
+if (jailChannelId   ===  "" ) {abort = true; console.log(`"jailChannelId" missing, add it to "config.json"  `)}
+if (mutedRoleId     ===  "" ) {abort = true; console.log(`"mutedRoleId" missing, add it to "config.json"    `)}
 if (abort           === true) {process.exit(1)}
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });

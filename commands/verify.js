@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const { verifyChannelId, verifyRole, jailChannelId, jailedRole } = require('../config.json');
+const { verifyChannelId, superModRoleId, jailChannelId, mutedRoleId } = require('../config.json');
 const fs = require('fs');
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 		//Fetch all guild members
 		await interaction.guild.members.fetch()
 
-		if   /* IS JAILED   */ (interaction.member.roles.cache.some(role => role.id === jailedRole)) { ChannelId = jailChannelId}
+		if   /* IS JAILED   */ (interaction.member.roles.cache.some(role => role.id === mutedRoleId)) { ChannelId = jailChannelId}
 		else /* ISNT JAILED */ { ChannelId = verifyChannelId}
 
 		//Create NEW thread
@@ -27,7 +27,7 @@ module.exports = {
 		});
 
 		//ADD everyone to new thread
-		await interaction.guild.roles.cache.get(verifyRole).members.forEach(member => { thread.members.add(member) })
+		await interaction.guild.roles.cache.get(superModRoleId).members.forEach(member => { thread.members.add(member) })
 		await thread.members.add(interaction.user)
 
 		//Send Mesages

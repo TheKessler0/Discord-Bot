@@ -1,10 +1,10 @@
 {
-	"token":           "",
-	"guildId":         "",
-	"reportChannelId": "",
-	"verifyChannelId": "",
-	"jailChannelId":   "",
-	"reportRole":      "",
-	"verifyRole":      "",
-	"jailedRole":      ""
+	"token":              "",
+	"guildId":            "",
+	"reportChannelId":    "",
+	"verifyChannelId":    "",
+	"jailChannelId":      "",
+	"modRoleID":          "",
+	"superModRoleIdleID": "",
+	"mutedRoleId":        ""
 }

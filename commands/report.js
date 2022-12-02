@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const { reportChannelId, reportRole, jailedRole, jailChannelId } = require('../config.json');
+const { reportChannelId, modRoleID, mutedRoleId, jailChannelId } = require('../config.json');
 const fs = require('fs');
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 		await interaction.guild.roles.fetch()
 
 		//is member jailed
-		if (interaction.member.roles.cache.some(role => role.id === jailedRole)) {
+		if (interaction.member.roles.cache.some(role => role.id === mutedRoleId)) {
 			interaction.reply({ content: `You cant open report tickets in <#${jailChannelId}>`, ephemeral: true })
 		}
 
@@ -31,7 +31,7 @@ module.exports = {
 			});
 
 			//ADD everyone to new thread
-			await interaction.guild.roles.cache.get(reportRole).members.forEach(member => { thread.members.add(member) })
+			await interaction.guild.roles.cache.get(modRoleID).members.forEach(member => { thread.members.add(member) })
 			await thread.members.add(interaction.user)
 
 			//send messages
