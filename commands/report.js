@@ -21,12 +21,13 @@ module.exports = {
 		//Create NEW thread
 		const channel = await client.channels.cache.get(ChannelId);
 		const thread = await channel.threads.create({
-			name: `[R] ${interaction.user.tag.replace(/#[0-9]{4}$/gm, "")} ${interaction.user.id}`,
+			name: `${interaction.user.tag.replace(/#[0-9]{4}$/gm, "")} ${interaction.user.id}`,
 			autoArchiveDuration: ThreadAutoArchiveDuration.ThreeDays,
 			type: ChannelType.PrivateThread,
 			invitable: false,
 			reason: `${interaction.user.id} reporting to staff`
 		});
+		await thread.send(`\`\`\`NAME: ${interaction.user.tag.replace(/#[0-9]{4}$/gm, "")}\nID  : ${interaction.user.id}\`\`\``)
 
 		//ADD everyone to new 
 		const rolesToAdd = [roleIds.owner, roleIds.seniorMod, roleIds.normMod, roleIds.juniorMod]
@@ -35,7 +36,7 @@ module.exports = {
 		}
 		await thread.members.add(interaction.user)
 
-		//Send Mesages
+		//Send Messages
 		fs.readFile("./messages/report reply.txt", "utf8", async function (err, data) { if (err) throw err; await interaction.followUp({ content: data, ephemeral: true }) });
 		fs.readFile("./messages/report intro.txt", "utf8", async function (err, data) { if (err) throw err; await thread.send(`${interaction.user}\n${data}`) });
 	}

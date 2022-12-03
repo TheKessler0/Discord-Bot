@@ -21,15 +21,16 @@ module.exports = {
 		//Create NEW thread
 		const channel = await client.channels.cache.get(ChannelId);
 		const thread = await channel.threads.create({
-			name: `[V] ${interaction.user.tag.replace(/#[0-9]{4}$/gm, "")} ${interaction.user.id}`,
+			name: `${interaction.user.tag.replace(/#[0-9]{4}$/gm, "")} ${interaction.user.id}`,
 			autoArchiveDuration: ThreadAutoArchiveDuration.ThreeDays,
 			type: ChannelType.PrivateThread,
 			invitable: false,
 			reason: `${interaction.user.id} trying to verify`
 		});
+		await thread.send(`\`\`\`NAME: ${interaction.user.tag.replace(/#[0-9]{4}$/gm, "")}\nID  : ${interaction.user.id}\`\`\``)
 
 		//ADD everyone to new 
-		const rolesToAdd = [roleIds.owner, roleIds.seniorMod]
+		const rolesToAdd = [roleIds.owner]
 		for (const role of rolesToAdd) {
 			await interaction.guild.roles.cache.get(role).members.forEach(member => { thread.members.add(member) })
 		}

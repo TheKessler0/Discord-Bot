@@ -1,10 +1,17 @@
 {
-	"token":              "",
-	"guildId":            "",
-	"channelIds.report":    "",
-	"channelIds.verify":    "",
-	"channelIds.jail":      "",
-	"roleIds.normMod":          "",
-	"roleIds.seniorModleID": "",
-	"roleIds.muted":        ""
+	"token":    "",
+	"clientId": "",
+	"guildId":  "" ,
+	"roleIds":         {
+			"normMod":   "",
+			"seniorMod": "",
+			"juniorMod": "",
+			"muted":     "",
+			"owner":     ""
+	},
+	"channelIds":      {
+			"report":    "",
+			"verify":    "",
+			"jail":      ""
+	}
 }
