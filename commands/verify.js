@@ -40,12 +40,12 @@ module.exports = {
 		await thread.members.add(interaction.user)
 
 		//Send Messages
-		fs.readFile("./messages/verify reply.txt", "utf8", async function (err, data) { if (err) throw err; await interaction.followUp({ content: data, ephemeral: true }) });
+		fs.readFile("./messages/verify reply.txt", "utf8", async function (err, data) { if (err) throw err; await interaction.followUp({ content: `${data}\nclick here: ${thread}`, ephemeral: true }) });
 		fs.readFile("./messages/verify intro.txt", "utf8", async function (err, data) { if (err) throw err; await thread.send(`${interaction.user} ${data}`) });
 
 		//close ticket if no activity
 		await thread.awaitMessages({
-			time: 1000 * 60 * 60,
+			time: 1000 * 60 * 1,
 			errors: [`time`],
 			max: 1,
 			filter: m => m.author.id == interaction.user.id

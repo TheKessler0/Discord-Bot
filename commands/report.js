@@ -40,7 +40,7 @@ module.exports = {
 		await thread.members.add(interaction.user)
 
 		//Send Messages
-		fs.readFile("./messages/report reply.txt", "utf8", async function (err, data) { if (err) throw err; await interaction.followUp({ content: data, ephemeral: true }) });
+		fs.readFile("./messages/report reply.txt", "utf8", async function (err, data) { if (err) throw err; await interaction.followUp({ content: `${data}\nclick here: ${thread}`, ephemeral: true }) });
 		fs.readFile("./messages/report intro.txt", "utf8", async function (err, data) { if (err) throw err; await thread.send(`${interaction.user}\n${data}`) });
 
 		//close ticket if no activity
