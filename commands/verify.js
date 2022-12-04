@@ -45,7 +45,7 @@ module.exports = {
 
 		//close ticket if no activity
 		await thread.awaitMessages({
-			time: 1000 * 60 * 1,
+			time: 1000 * 60 * 60,
 			errors: [`time`],
 			max: 1,
 			filter: m => m.author.id == interaction.user.id
