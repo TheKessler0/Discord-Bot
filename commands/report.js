@@ -7,6 +7,10 @@ module.exports = {
 		.setName('report')
 		.setDescription('creates a ticket to report something to staff'),
 	async execute(interaction, client) {
+		
+		if (interaction.channel == null) {
+			return
+		}
 
 		await interaction.deferReply({ ephemeral: true });
 

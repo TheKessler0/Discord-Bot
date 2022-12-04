@@ -7,6 +7,10 @@ module.exports = {
 		.setName('verify')
 		.setDescription('creates a ticket to hopefully verify you'),
 	async execute(interaction, client) {
+		
+		if (interaction.channel == null) {
+			return
+		}
 
 		await interaction.deferReply({ ephemeral: true });
 

@@ -6,6 +6,10 @@ module.exports = {
 		.setName('close')
 		.setDescription('closes tickets'),
 	async execute(interaction, client) {
+
+		if (interaction.channel == null) {
+			return
+		}
 		
 		await interaction.deferReply({ ephemeral: true });
 
